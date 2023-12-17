@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-import add_0
+if __name__ == "__main__":
+    import add_0
+    add_0.a = 1
+    add_0.b = 2
 
-result = add_0.add(1, 2)
-print(f'1 + 2 =  {result}')
+print(f'{add_0.a} + {add_0.b}  =  {add_0.add(1, 2)}')
