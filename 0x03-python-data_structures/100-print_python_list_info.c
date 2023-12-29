@@ -1,5 +1,4 @@
-#include <object.h>
-#include <listobject.h>
+#include <python.h>
 
 /**
 * print_python_list_info - Function prints information about a Python list
@@ -26,4 +25,3 @@ void print_python_list_info(PyObject *p)
         index++;
 	}
 }
-
