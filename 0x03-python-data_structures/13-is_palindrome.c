@@ -11,7 +11,7 @@
  int is_palindrome(listint_t **head)
  {
      listint_t *current;
-     int* dataArray;
+     int dataArray[10240];
      unsigned int i, nodes = 0;
      int start, end;
 
@@ -32,10 +32,9 @@
      if (nodes == 1)
         return (1);
 
-     dataArray = (int*)malloc(nodes * sizeof(int));
      current = *head;
      i = 0;
-     while (current != NULL)
+     while (i < nodes)
      {
          dataArray[i++] = current->n;
          current = current->next;
