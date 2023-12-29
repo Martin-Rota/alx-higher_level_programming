@@ -1,16 +1,14 @@
 #include <Python.h>
-#include <object.h>
-#include <listobject.h>
 
 /**
 * print_python_list_info - Function prints information about a Python list
-* @p - pointer to a PyObject
+* @p: pointer to a PyObject
 * Returns: no value
 */
 
 void print_python_list_info(PyObject *p)
 {
-	Py_ssize_t len, alloc_len, index;
+	long int len, alloc_len, index;
 
 	len = PyList_Size(p);
 	alloc_len = ((PyListObject *)p)->allocated;
@@ -19,11 +17,11 @@ void print_python_list_info(PyObject *p)
 	printf("[*] Allocated = %ld\n", alloc_len);
 
 	index = 0;
-	while (index < size)
+	while (index < len)
 	{
 		printf("Element %ld: %s\n",
-		       idx,
-		       (PY_TYPE(PyList_GetItem(p, idx)))->tp_name);
+		       index,
+		       (Py_TYPE(PyList_GetItem(p, index)))->tp_name);
         index++;
 	}
 }
