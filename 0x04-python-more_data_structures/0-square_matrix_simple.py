@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 def square_matrix_simple(matrix=[]):
     # Create a new matrix with the same size as the input matrix
     new_matrix = list(map(lambda row: list(map(lambda _: 0, row)), matrix))
