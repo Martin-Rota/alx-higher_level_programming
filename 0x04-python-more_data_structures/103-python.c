@@ -26,13 +26,14 @@ void print_python_bytes(PyObject *p) {
     }
 
     Py_ssize_t size = PyObject_Length(p);
-    const char *bytes_str = PyBytes_AS_STRING(p);
-
     printf("[.] bytes object info\n");
     printf("  [.] Size: %zd\n", size);
     printf("  [.] trying string: ");
+
     for (Py_ssize_t i = 0; i < size && i < 10; ++i) {
-        printf("%02hhx", bytes_str[i]);
+        int value = PyBytes_GET_ITEM(p, i) & 0xff;
+        printf("%02x", value);
+
         if (i + 1 < size && i + 1 < 10) {
             printf(" ");
         }
