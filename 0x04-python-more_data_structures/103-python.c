@@ -29,9 +29,10 @@ void print_python_bytes(PyObject *p) {
     printf("[.] bytes object info\n");
     printf("  [.] Size: %zd\n", size);
     printf("  [.] trying string: ");
-
+    
+    int value;
     for (Py_ssize_t i = 0; i < size && i < 10; ++i) {
-        int value = PyBytes_GET_ITEM(p, i) & 0xff;
+        value = PyBytes_GET_ITEM(p, i) & 0xff;
         printf("%02x", value);
 
         if (i + 1 < size && i + 1 < 10) {
