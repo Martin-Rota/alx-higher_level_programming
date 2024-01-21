@@ -31,7 +31,7 @@ void print_python_bytes(PyObject *p) {
     printf("  [.] trying string: ");
 
     for (Py_ssize_t i = 0; i < size && i < 10; ++i) {
-        int value = PyLong_AsLong(PyBytes_GetItem(p, i));
+        int value = PyBytes_AsUnsignedChar(PyBytes_GetSlice(p, i, i + 1));
         if (value == -1 && PyErr_Occurred()) {
             fprintf(stderr, "[ERROR] Unable to get byte value\n");
             return;
