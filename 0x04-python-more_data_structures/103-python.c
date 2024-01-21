@@ -14,7 +14,8 @@ void print_python_list(PyObject *p) {
     printf("[*] Allocated = %zd\n", ((PyListObject *)p)->allocated);
 
     for (Py_ssize_t i = 0; i < size; ++i) {
-        printf("Element %zd: %s\n", i, Py_TYPE(PyList_GET_ITEM(p, i))->tp_name);
+        PyObject *item = PyList_GET_ITEM(p, i);
+        printf("Element %zd: %s\n", i, item->ob_type->tp_name);
     }
 }
 
@@ -29,14 +30,13 @@ void print_python_bytes(PyObject *p) {
 
     printf("[.] bytes object info\n");
     printf("  [.] Size: %zd\n", size);
-    printf("  [.] trying string: %s\n", bytes_str);
-    printf("  [.] first %zd bytes: ", (size < 10) ? size : 10);
-
-    for (Py_ssize_t i = 0; i < 10 && i < size; ++i) {
+    printf("  [.] trying string: ");
+    for (Py_ssize_t i = 0; i < size && i < 10; ++i) {
         printf("%02hhx", bytes_str[i]);
-        if (i + 1 < (size < 10 ? size : 10)) {
+        if (i + 1 < size && i + 1 < 10) {
             printf(" ");
         }
     }
     printf("\n");
 }
+
