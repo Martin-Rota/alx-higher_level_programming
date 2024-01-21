@@ -29,10 +29,16 @@ void print_python_bytes(PyObject *p) {
     printf("[.] bytes object info\n");
     printf("  [.] Size: %zd\n", size);
     printf("  [.] trying string: ");
-    
-    int value;
+
+    PyObject *bytes_obj = PyUnicode_AsASCIIString(p);
+    if (bytes_obj == NULL) {
+        fprintf(stderr, "[ERROR] Cannot convert to ASCII\n");
+        return;
+    }
+
+    const char *bytes_str = PyBytes_AS_STRING(bytes_obj);
     for (Py_ssize_t i = 0; i < size && i < 10; ++i) {
-        value = PyBytes_GET_ITEM(p, i) & 0xff;
+        int value = bytes_str[i] & 0xff;
         printf("%02x", value);
 
         if (i + 1 < size && i + 1 < 10) {
@@ -40,5 +46,7 @@ void print_python_bytes(PyObject *p) {
         }
     }
     printf("\n");
+
+    Py_DECREF(bytes_obj);
 }
 
