@@ -1,5 +1,4 @@
 #include <Python.h>
-#include <bytesobject.h>
 
 void print_python_list(PyObject *p) {
     if (!PyList_Check(p)) {
@@ -30,7 +29,8 @@ void print_python_bytes(PyObject *p) {
     printf("[.] bytes object info\n");
     printf("  [.] Size: %zd\n", size);
     printf("  [.] trying string: ");
-
+    
+    unsigned char PyBytes_AsUnsignedChar(PyObject *bytes);
     for (Py_ssize_t i = 0; i < size && i < 10; ++i) {
         int value = PyBytes_AsUnsignedChar(PyBytes_GetSlice(p, i, i + 1));
         if (value == -1 && PyErr_Occurred()) {
