@@ -1,4 +1,5 @@
 #include <Python.h>
+#include <bytesobject.h>
 
 void print_python_list(PyObject *p) {
     if (!PyList_Check(p)) {
